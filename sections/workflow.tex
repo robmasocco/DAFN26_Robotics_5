@@ -1,6 +1,6 @@
 % Section 1 - ROS 2 development workflow
 % Roberto Masocco <roberto.masocco@uniroma2.it>
-% April 23, 2025
+% May 2, 2026
 
 % ### ROS 2 development workflow ###
 \section{ROS 2 development workflow}
@@ -8,6 +8,7 @@
 
 % --- Installing ROS 2 ---
 \begin{frame}{Installing ROS 2}{HOWTO}
+  \justifying
   On \textbg{Ubuntu} systems, the easiest way to install ROS 2 Jazzy is through \href{https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html}{\color{blue}\underline{Debian packages}}.\\
   \bigskip
   The installation steps can be summarized as follows:
@@ -19,6 +20,7 @@
   We have a script for this: \href{https://github.com/IntelligentSystemsLabUTV/ros2-examples/blob/jazzy/bin/ros2_jazzy_install.sh}{\color{blue}\underline{\texttt{bin/ros2\_jazzy\_install.sh}}}.
 \end{frame}
 \begin{frame}{Installing ROS 2}{Sourcing the installation}
+  \justifying
   After the installation is complete, in order to use \textbg{CLI tools} and have libraries available to \textbg{build packages}, you need to \textbg{source the installation}:\\
   \bigskip
   \texttt{source /opt/ros/jazzy/setup.bash} (there are also a \texttt{.zsh} and a \texttt{.sh})\\
@@ -32,29 +34,32 @@
 
 % --- Language support ---
 \begin{frame}{Language support}{Low- vs high-level programming}
-  Currently, ROS 2 officially supports \textbg{two programming languages}:
+  \justifying
+  Currently, ROS 2 officially supports \textbg{two programming languages}.
   \begin{itemize}
     \item \textbg{C++} (C++17 in Jazzy)
     \item \textbg{Python} ($\geq$3.5, 3.12 works with Jazzy)
   \end{itemize}
-  You can develop software packages using \textbg{only one} of them, or \textbg{both} at the same time (unofficially).
+  \bigskip
+  As a standard practice, you may develop software packages using either one, but \textbg{each package} must be based on \textbg{only one} of them.
 \end{frame}
 \begin{frame}{Language support}{Low- vs high-level programming}
-  The two languages are both fully supported since they are \textbg{complementary}:
+  \justifying
+  The two languages are both fully supported since they are \textbg{complementary}.
   \begin{itemize}
-    \item \textbg{C++} allows to build complex software using \textbg{modern paradigms}, but also to easily access the \textbg{hardware}, \textbg{libraries}, and \textbg{operating system} APIs when required, and to \textbg{optimize} the code for \textbg{performance}.
-    \item \textbg{Python} allows to \textbg{rapidly prototype} software, especially high-level modules, and to easily \textbg{interact} with the user and \textbg{visualize data}.
+    \item \textbg{C++} allows to build complex software using \textbg{modern paradigms}, but also to easily access the \textbg{hardware}, \textbg{libraries}, and \textbg{operating system} API when required, and to \textbg{optimize} the code for \textbg{performance}.
+    \item \textbg{Python} allows to \textbg{rapidly prototype} software, especially high-level modules, to easily \textbg{interact} with the user, and to \textbg{visualize data} quickly; \textbg{AI} software modules are usually implemented in Python; the entire \href{https://github.com/ros2/ros2cli/tree/jazzy}{\color{blue}\underline{\texttt{ros2cli}}} suite is written in Python.
   \end{itemize}
   Note how one prioritizes other features with respect to the other, and vice versa.
   \begin{block}{}
     \centering
-    \textbf{This course will focus on C++, because of its better performance, major functionalities, and widespread use in the industry and robotics development community.}
+    \textbf{This course will focus on C++ because of its major functionalities and widespread use in both the robotics industry and the development community.}
   \end{block}
-  The entire \href{https://github.com/ros2/ros2cli/tree/jazzy}{\color{blue}\underline{\texttt{ros2cli}}} suite is written in Python, and is fully \textbg{expandable}.\\
-  Python examples will still be provided and discussed whenever possible.
+  The ROS 2 Python API is specular to the C++ one, easy to master after \texttt{rclcpp}.
 \end{frame}
 \begin{frame}{Language support}{The build system}
-  The ROS 2 build system supports both \textbg{C++} and \textbg{Python} packages through a common \textbg{package manager}: \href{https://colcon.readthedocs.io/en/released/}{\color{blue}\underline{\texttt{colcon}}} (collective construction).\\
+  \justifying
+  The ROS 2 \href{https://jyn.dev/what-is-a-build-system-anyway/}{\color{blue}\underline{build system}} supports both \textbg{C++} and \textbg{Python} packages through a common \textbg{package manager}: \href{https://colcon.readthedocs.io/en/released/}{\color{blue}\underline{\texttt{colcon}}} (collective construction).\\
   \bigskip
   Spawned as a child project of the ROS community, its main features are:
   \begin{itemize}
@@ -69,12 +74,13 @@
 \begin{frame}{Language support}{CMake}
   \begin{columns}
     \column{.5\textwidth}
-    CMake is a \textbg{cross-platform} build configuration generator, which allows to build software using a \textbg{single}, \textbg{unified syntax} on all supported platforms.\\
+      \justifying
+      CMake is a \textbg{cross-platform build configuration generator}, which allows to build software using a \textbg{single}, \textbg{unified syntax} on all supported platforms.\\
     Remember \textbg{Makefiles}? CMake is a compiler-agnostic \textbg{Makefile generator}.\\
     \bigskip
-    We will write \textbg{\texttt{CMakeLists.txt}} files, which are essentially \textbg{scripts} that tell CMake how to build our software.\\
+    It works with \texttt{CMakeLists.txt} files, which are essentially \textbg{scripts} that tell CMake how to build our software. The language may seem daunting but it's mostly boilerplate.\\
     \bigskip
-    ROS 2 extends CMake with a set of \textbg{macros} and \textbg{functions}: the \href{https://docs.ros.org/en/jazzy/How-To-Guides/Ament-CMake-Documentation.html}{\color{blue}{\underline{\texttt{ament}}}} library.
+    ROS 2 extends CMake with the \href{https://docs.ros.org/en/jazzy/How-To-Guides/Ament-CMake-Documentation.html}{\color{blue}{\underline{\texttt{ament}}}} library.
 
     \column{.5\textwidth}
     \begin{figure}
@@ -88,13 +94,14 @@
 \begin{frame}{Language support}{setuptools}
   \begin{columns}
     \column{.5\textwidth}
-    \texttt{setuptools} is a \textbg{Python library} designed to ease the setup of Python projects, namely Python software packages.\\
-    Remember nightmarish \texttt{import} issues? setuptools is a \textbg{dependency resolver}.\\
+    \justifying
+    \texttt{setuptools} is a \textbg{Python library} designed to \textbg{standardize the setup of Python projects}, namely Python software packages.\\
+    Remember nightmarish \texttt{import} issues? setuptools is (also) a \textbg{dependency resolver}.\\
     \bigskip
-    We will write:
+    It works with
     \begin{itemize}
-      \item \textbg{\texttt{setup.py}} files, in which the \texttt{setup(...)} function specifies the package's metadata and dependencies;
-      \item \textbg{\texttt{setup.cfg}} files, which specify the location of all \textbg{executable scripts} in the package.
+      \item \texttt{setup.py} files, in which the \texttt{setup(...)} function specifies the package's metadata and dependencies;
+      \item \texttt{setup.cfg} files, which specify the location of all \textbg{executable scripts} in the package.
     \end{itemize}
 
     \column{.5\textwidth}
@@ -107,6 +114,7 @@
   \end{columns}
 \end{frame}
 \begin{frame}{Language support}{Building packages with colcon}
+  \justifying
   The \texttt{colcon} command you will use the most is\\
   \bigskip
   \texttt{colcon build}\\
@@ -116,15 +124,16 @@
   \begin{itemize}
     \item \texttt{-{}-event-handlers} to specify which \textbg{build events} to log (\emph{e.g.}, \texttt{console\_direct+});
     \item \texttt{-{}-packages-select} to specify which packages to build;
-    \item \texttt{-{}-symlink-install} to \textbg{symlink} the executables into the \texttt{install/} directory, instead of copying them (useful for Python packages);
+    \item \texttt{-{}-symlink-install} to \textbg{symlink} executables and scripts into the \texttt{install/} directory, instead of copying them (useful for Python development: modifying a source file does not require a rebuild);
     \item \texttt{-{}-packages-up-to} to build a package and all its dependencies;
     \item \texttt{-{}-packages-ignore} to ignore a package and all its dependencies.
   \end{itemize}
 \end{frame}
 \begin{frame}{Language support}{A note}
+  \justifying
   \begin{alertblock}{Beware!}
     \centering
-    \textbr{During development, a good 85\% of all issues happens during integration and build.}
+    \textbr{During development, a good 80\% of all issues happens during integration and build.}
   \end{alertblock}
   \bigskip
   We will see later on tools that help with this...
@@ -132,6 +141,7 @@
 
 % --- The workspace ---
 \begin{frame}{The workspace}{Anatomy of a ROS 2 development directory}
+  \justifying
   The organization of directories in a ROS 2 workspace is \textbg{standardized} because of \texttt{colcon}.\\
   We have, at least:
   \begin{itemize}
@@ -147,6 +157,7 @@
   \end{alertblock}
 \end{frame}
 \begin{frame}{The workspace}{Package creation}
+  \justifying
   In the beginning was\\
   \bigskip
   \texttt{ros2 pkg create <package\_name>}\\
@@ -157,5 +168,6 @@
     \item \texttt{-{}-build-type <build\_type>} (\texttt{ament\_cmake} or \texttt{ament\_python})
     \item \texttt{-{}-dependencies <package\_name> ...}
   \end{itemize}
+  \bigskip
   Most of this stuff can be specified afterwards, eventually modifying the \texttt{package.xml} file.
 \end{frame}

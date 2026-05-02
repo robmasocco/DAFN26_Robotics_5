@@ -1,0 +1,49 @@
+% Section 3 - Hello, world!
+% Roberto Masocco <roberto.masocco@uniroma2.it>
+% May 2, 2026
+
+% ### Hello, world! ###
+\section{Hello, world!}
+\graphicspath{{figs/section3/}}
+
+% --- Code examples ---
+\begin{frame}{Code examples}
+	\justifying
+	Find all course materials on \textbg{GitHub} at \href{https://github.com/IntelligentSystemsLabUTV/ros2-examples}{\color{blue}\underline{ros2-examples}} (\texttt{jazzy} branch).\\
+	\bigskip
+	The repository is organized as a \textbg{ROS 2 workspace} ready to be built, and intended to support \href{https://code.visualstudio.com/}{\color{blue}\underline{Visual Studio Code}} as \textbg{IDE}. Find all information in \href{https://github.com/IntelligentSystemsLabUTV/ros2-examples/blob/jazzy/README.md}{\color{blue}\underline{\texttt{README.md}}}.\\
+	\bigskip
+	It is also organized with \textbg{Docker containers} in mind, and supports development containers for VS Code (more on this later).\\
+	It is based on the \href{https://github.com/dotX-Automation/dua-template}{\color{blue}{\underline{\textbf{Distributed Unified Architecture}}}}, developed during my PhD.\\
+	Their inner workings are totally transparent, but if you're curious see \href{https://github.com/IntelligentSystemsLabUTV/ros2-examples/blob/jazzy/dua-template.md}{\color{blue}\underline{\texttt{dua-template.md}}}.
+	\begin{block}{}
+		\centering
+		Suggestion: clone it and checkout your own branch locally, to be still able to get and \texttt{merge} updates from the remote.
+	\end{block}
+\end{frame}
+
+% --- Example - Topic pub/sub ---
+\begin{frame}{Example}{Topic pub/sub}
+  \justifying
+  \begin{block}{}
+    \justifying
+    \centering
+	  Now go have a look at the first two example packages:\\
+    \href{https://github.com/IntelligentSystemsLabUTV/ros2-examples/tree/jazzy/src/cpp/topic_pubsub_cpp}{\color{blue}\underline{ros2-examples/src/cpp/topic\_pubsub\_cpp}}\\
+    \smallskip
+    \href{https://github.com/IntelligentSystemsLabUTV/ros2-examples/tree/jazzy/src/python/topic_pubsub_py}{\color{blue}\underline{ros2-examples/src/python/topic\_pubsub\_py}}
+  \end{block}
+\end{frame}
+
+% --- Exercises ---
+\begin{frame}{Exercises}
+  \justifying
+  \begin{itemize}
+    \item Install ROS 2 on a platform of your choice.
+    \item Run the \href{https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html\#try-some-examples}{\color{blue}\underline{demo nodes}}.
+    \item Inspect the demo topics.
+    \item Interact with the demo nodes from the command line.
+    \item Clone \href{https://github.com/IntelligentSystemsLabUTV/ros2-examples}{\color{blue}\underline{\texttt{ros2-examples}}} as suggested and rebuild the first example packages.
+    \item Listen to the \texttt{/rosout} topic from the command line, then run other nodes.
+  \end{itemize}
+\end{frame}
