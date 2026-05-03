@@ -131,6 +131,23 @@ int64 number_with_default 2
   \end{alertblock}
   \textbg{Zenoh is solving this by supporting many more real-world networks and use cases than the DDS.}
 \end{frame}
+\begin{frame}{Message topics}{Coding hints for publishers and subscribers}
+  \justifying
+  \begin{itemize}
+    \item A node \textbg{publishes} on a topic with a \textbg{Publisher object}.
+      \begin{itemize}
+        \item The \textbg{topic name} must be specified.
+        \item A \textbg{QoS policy} may be specified.
+        \item The \texttt{publish} method is then used to \textbg{send messages}.
+      \end{itemize}
+    \item A node \textbg{subscribes} to a topic with a \textbg{Subscriber object}.
+      \begin{itemize}
+        \item The \textbg{topic name} must be specified.
+        \item A \textbg{QoS policy} may be specified.
+        \item A \textbg{callback} must be specified, to execute on each incoming message, which is also its only argument.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 \begin{frame}{Message topics}{Inspection tools}
   \justifying
   The command line tool \texttt{ros2 topic} can be used to \textbg{inspect topics} and related entities.\\
@@ -145,4 +162,24 @@ int64 number_with_default 2
   \end{itemize}
   each with many useful options.\\
   \textbg{Nodes} can be inspected with the \texttt{ros2 node} command, and its many verbs.
+\end{frame}
+
+% --- Timers ---
+\begin{frame}{Timers}{Types and coding hints}
+  \justifying
+  In ROS 2, \textbg{timers} can be used to schedule \textbg{jobs to be executed periodically}.\\
+  \bigskip
+  There are \textbg{two types}, differentiated by their \textbg{time source}.
+  \begin{itemize}
+    \item \textbg{GenericTimer} created with \texttt{create\_timer}: takes the time from the \textbg{ROS node clock}.
+      \begin{itemize}
+        \item This defaults to the kernel real time clock but may be \textbg{reset} or set using the \texttt{/clock} \textbg{topic} (\emph{e.g.}, by a \textbg{simulator} setting the \texttt{use\_sim\_time} parameter to \texttt{true}).
+      \end{itemize}
+    \item \textbg{WallTimer} created with \texttt{create\_wall\_timer}: takes the time from the \textbg{OS}.
+      \begin{itemize}
+        \item This goes with the kernel real time clock.
+      \end{itemize}
+  \end{itemize}
+  \bigskip
+  Both must be given a \textbg{callback to execute on each tick}, taking no arguments.
 \end{frame}
